@@ -3,7 +3,7 @@ const apiKey = "33dd3896d1fb391e087484ef90f2df67194766b4";
 
 async function fetchCodeforcesData() {
     try {
-        const response = await fetch(`https://codeforces.com/api/user.info?handles=${handle}`);
+        const response = await fetch(`https://codeforces.com/api/user.info?handles=NIGHT_FURY_sbr`);
         const data = await response.json();
         return data.result[0];
     } catch (error) {
@@ -13,6 +13,7 @@ async function fetchCodeforcesData() {
 }
 
 async function updateStats() {
+    console.log("Updating Codeforces Stats...");
     const userData = await fetchCodeforcesData();
 
     if (userData) {

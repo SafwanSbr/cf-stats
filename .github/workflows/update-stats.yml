@@ -18,7 +18,11 @@ jobs:
         node-version: 16
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd ${{ github.workspace }}
+        npm install
 
     - name: Update Codeforces Stats
-      run: node main.js
+      run: |
+        cd ${{ github.workspace }}
+        node main.js

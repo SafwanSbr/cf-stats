@@ -1,9 +1,9 @@
 name: Update Codeforces Stats
 
 on:
-  schedule:
-    - cron: '0 */1 * * *' # Run every hour
-
+  push:
+    branches:
+      - main
 jobs:
   update-stats:
     runs-on: ubuntu-latest
@@ -26,3 +26,4 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         node main.js
+

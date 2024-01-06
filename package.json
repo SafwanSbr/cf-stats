@@ -1,0 +1,15 @@
+{
+  "name": "cf-stats",
+  "version": "1.0.0",
+  "description": "Codeforces Statistics Updater",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [
+    "codeforces",
+    "statistics"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

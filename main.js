@@ -12,8 +12,9 @@ async function fetchCodeforcesData() {
     }
 }
 
+// ... (existing code)
+
 async function updateStats() {
-    console.log("Updating Codeforces Stats...");
     const userData = await fetchCodeforcesData();
 
     if (userData) {
@@ -28,7 +29,51 @@ async function updateStats() {
             <p>Last Online: ${new Date(userData.lastOnlineTimeSeconds * 1000)}</p>
             <img src="${userData.avatar}" alt="User Avatar" style="max-width: 100px; max-height: 100px;">
         `;
+
+        // Generate a bar chart
+        generateChart(userData);
     }
 }
 
-updateStats();
+function generateChart(userData) {
+    const ctx = document.createElement("canvas").getContext("2d");
+    const chartContainer = document.getElementById("chart-container");
+
+    if (chartContainer) {
+        // Clear previous charts
+        chartContainer.innerHTML = "";
+
+        // Create a canvas element for the chart
+        const canvas = document.createElement("canvas");
+        canvas.width = 400; // Set width as needed
+        canvas.height = 300; // Set height as needed
+        chartContainer.appendChild(canvas);
+
+        const chartData = {
+            labels: ["Solves", "Contests"],
+            datasets: [{
+                label: "Codeforces Statistics",
+                backgroundColor: ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)"],
+                borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+                borderWidth: 1,
+                data: [userData.rating, userData.contribution],
+            }],
+        };
+
+        const chartOptions = {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+}
+
+// ... (remaining code)
